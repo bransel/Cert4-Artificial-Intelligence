@@ -190,6 +190,55 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &748637528
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 748637530}
+  - component: {fileID: 748637529}
+  m_Layer: 0
+  m_Name: AsteroidSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &748637529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 748637528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a61e178c6ef417f42b15762f1a76deac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  asteroidPrefabs:
+  - {fileID: 1690815765014632, guid: 9b22ef52ee175b647b42f94475bccb4d, type: 2}
+  - {fileID: 1091383514738684, guid: e7e53d4c8d3ac55438948782e3bbaf12, type: 2}
+  - {fileID: 1051601306462014, guid: 96a18e63a7b0cbc42875a956a43c1d3e, type: 2}
+  - {fileID: 1305869129050938, guid: bb954ebc8fcbaf64f8bf672ded692e4a, type: 2}
+  - {fileID: 1246081262640410, guid: 1a294237800981b428102bb37f4a8d61, type: 2}
+  - {fileID: 1750366628275398, guid: f67d81297b50003469516fdab67a08cc, type: 2}
+  spawnRate: 1
+  spawnRadius: 5
+--- !u!4 &748637530
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 748637528}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &940331726
 GameObject:
   m_ObjectHideFlags: 0
@@ -295,14 +344,14 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 2
+  m_LinearDrag: 3.4
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &940331731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,5 +363,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c7fae4467bdd2c4483132833c99607a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
-  rotationSpeed: 360
+  speed: 5
+  rotationSpeed: 180
