@@ -8,16 +8,27 @@ public class Enemy : MonoBehaviour
     public Transform waypointParent;
     public float moveSpeed = 2f;
     public float stoppingDistance = 1f;
+    private float sCollider;
 
+    //public enum to define category behaviour
+    public enum State
+
+
+    {
+        Patrol,
+        Seek
+    }
 
     //public Rigidbody rigid;
-   // public float gravityDistance = 2f;
+    // public float gravityDistance = 2f;
 
-
+    public State currentState;
     private Transform[] waypoints;
     private int currentIndex = 1;
+    
 
     private NavMeshAgent agent;
+    private Transform target;
 
     // Use this for initialization
     void Start()
@@ -28,13 +39,31 @@ public class Enemy : MonoBehaviour
         // Get the AI component
 
         agent = GetComponent<NavMeshAgent>();
-
+        // just in case make state Patrol
+        currentState = State.Patrol;
+       
+   
     }
 
     // Update is called once per frame
     void Update()
     {
-        Patrol();
+        // using a switch, switching by our currentState (the enum public variable) 
+        switch (currentState)
+
+        {
+            case State.Patrol:
+                Patrol();
+                break;
+            case State.Seek:
+                Seek();
+                break;
+            default:
+                Patrol();
+                break;
+        }
+
+        //Patrol();
     }
 
     void OnDrawGizmos()
@@ -55,9 +84,11 @@ public class Enemy : MonoBehaviour
             // Draw stopping distance sphere
             Gizmos.DrawWireSphere(point.position, stoppingDistance);
             // Draw gravity sphere
-         //   Gizmos.color = Color.cyan;
-          //  Gizmos.DrawWireSphere(point.position, gravityDistance);
+            //   Gizmos.color = Color.cyan;
+            //  Gizmos.DrawWireSphere(point.position, gravityDistance);
 
+            Gizmos.color = Color.magenta;
+            Gizmos.DrawWireSphere(transform.position, GetComponent<SphereCollider>().radius);
         }
     }
     void Patrol()
@@ -114,5 +145,35 @@ public class Enemy : MonoBehaviour
 
         agent.SetDestination(point.position);
     }
-  
+
+    void Seek()
+    {
+        // Get enemy to follow target 
+
+        agent.SetDestination(target.position);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+
+        {
+            //set target to the OTHER thing in our zone
+            target = other.transform;
+            Debug.Log("Seeking");
+            //switch state to seek
+            currentState = State.Seek;
+
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        //switch state back to patrol as we lost our dude  
+        if (other.gameObject.CompareTag("Player"))
+
+        {
+            Debug.Log("Patrolling");
+            currentState = State.Patrol;        }
+
+    }
 }
