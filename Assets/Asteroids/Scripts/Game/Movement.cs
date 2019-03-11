@@ -9,7 +9,7 @@ namespace Asteroids
         public float speed = 20f; // Units to travel per second
         public float rotationSpeed = 360f; // Amount of rotation per second
         private Rigidbody2D rigid; // References to the attached Rigidbody2D
-
+        public GameObject projectilePrefab; // prefab to spawn while shooting
         // Use this for initialization
         void Start()
         {
@@ -52,8 +52,29 @@ namespace Asteroids
             if (Input.GetKey(KeyCode.S))
 
             {
-                rigid.AddForce(-transform.up * speed );
+                rigid.AddForce(-transform.up * speed);
+            }
+            // If player hits Space
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                // Shoot a projectile
+                Shoot();
             }
         }
+        // Shoots a projectile in a set direction
+        void Shoot()
+        {
+            // Spawn projectile at position and rotation of Player
+            GameObject projectile = Instantiate(projectilePrefab, transform.position, transform.rotation);
+
+            // Get Rigidbody2D from projectile
+            Projectile bullet = projectile.GetComponent<Projectile>();
+            bullet.Fire(transform.up);
+
+        }
+
+        
+           
+        
     }
 }

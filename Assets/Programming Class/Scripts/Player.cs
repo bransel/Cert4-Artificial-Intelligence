@@ -14,11 +14,12 @@ namespace AI
     {
         public float movementSpeed = 20f;
         private Rigidbody rigid;
+        
 
         // Use this for initialization
         void Start()
         {
-            rigid = GetComponent<Rigidbody>(); 
+            rigid = GetComponent<Rigidbody>();
 
         }
 
@@ -35,7 +36,8 @@ namespace AI
             //Apply velocity
             rigid.velocity = input * movementSpeed;
 
-           // Debug.Log(rigid.velocity);
+            // Debug.Log(rigid.velocity);
         }
+       
     }
 }
