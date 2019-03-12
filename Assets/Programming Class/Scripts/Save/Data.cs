@@ -2,15 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Data : MonoBehaviour {
+[System.Serializable]
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+public class Data
+{ // converting to binary , those values are being converted to here 
+
+    public int level;
+    public string playerName;
+    public float maxHP;
+    public float curHP;
+
+    public Data(PlayerGame player) 
+        // referencing the playergame script and converting it inbetween
+
+
+    {
+        level = player.level;
+        playerName = player.name;
+        maxHP = player.maxHP;
+        curHP = player.curHP;
+    }
+
+
 }

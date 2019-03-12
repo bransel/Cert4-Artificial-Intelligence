@@ -10,8 +10,8 @@ public class HealthBar : MonoBehaviour
     [Header("Health")]
 
     //range slider for max health in the inspector UI
-    [Range(0, 100f)]
-    public float maxHealth;
+    // [Range(0, 100f)]
+    public float maxHealth; 
     public float curHealth;
 
     [Header("Reference to UI elements")]
@@ -21,6 +21,8 @@ public class HealthBar : MonoBehaviour
     public Image healthFill;
 
     // Start is called before the first frame update
+
+
     void Start()
     {
 
@@ -29,8 +31,9 @@ public class HealthBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
 
+      
+        
         ManageHealthBar();
 
     }
