@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraOrbit : MonoBehaviour
-{
+{//to orbit around a target-> 
+    // public Transform target;
+
+
+
     // Distance the camera is from world zero
     public float distance = 10f;
     // X and Y rotation speed
@@ -47,6 +51,8 @@ public class CameraOrbit : MonoBehaviour
         //Update transform
         transform.rotation = Quaternion.Euler(y, x, 0);
         transform.position = -transform.forward * distance;
+        // to transform around a target:
+// transform.position = target.position - transform.forward * distance
     }
 
 
