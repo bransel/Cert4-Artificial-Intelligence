@@ -55,7 +55,7 @@ namespace Asteroids
                 rigid.AddForce(-transform.up * speed);
             }
             // If player hits Space
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKey(KeyCode.Space))
             {
                 // Shoot a projectile
                 Shoot();
