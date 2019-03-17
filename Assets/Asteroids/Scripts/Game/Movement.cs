@@ -64,12 +64,17 @@ namespace Asteroids
         // Shoots a projectile in a set direction
         void Shoot()
         {
+
+
             // Spawn projectile at position and rotation of Player
             GameObject projectile = Instantiate(projectilePrefab, transform.position, transform.rotation);
 
             // Get Rigidbody2D from projectile
             Projectile bullet = projectile.GetComponent<Projectile>();
+
+
             bullet.Fire(transform.up);
+
 
         }
 

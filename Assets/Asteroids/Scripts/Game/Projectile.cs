@@ -20,9 +20,24 @@ public class Projectile : MonoBehaviour {
         rigid.AddForce(direction * speed, ForceMode2D.Impulse);
     }
 
-	
-	// Update is called once per frame
-	void Update () {
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        // Try Getting Asteroid Script from Collision
+        Asteroid asteroid = collision.GetComponent<Asteroid>();
+
+        // If it is an Asteroid
+        if (asteroid)
+        {
+            //Destroy the Asteroid
+            asteroid.Destroy();
+            //Destroy the projectile
+            Destroy(gameObject);
+        }
+        
+    }
+
+    // Update is called once per frame
+    void Update () {
 		
 	}
 }

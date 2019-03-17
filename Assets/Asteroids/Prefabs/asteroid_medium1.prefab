@@ -6,23 +6,38 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: asteroidPieces.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: asteroidPieces.Array.data[0]
+      value: 
+      objectReference: {fileID: 1246081262640410, guid: 1a294237800981b428102bb37f4a8d61,
+        type: 2}
+    - target: {fileID: 0}
+      propertyPath: asteroidPieces.Array.data[1]
+      value: 
+      objectReference: {fileID: 1246081262640410, guid: 1a294237800981b428102bb37f4a8d61,
+        type: 2}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 0}
+  m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1305869129050938}
-  m_IsPrefabAsset: 1
+  m_IsPrefabParent: 0
 --- !u!1 &1305869129050938
 GameObject:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
+  serializedVersion: 5
   m_Component:
   - component: {fileID: 4607904199430442}
   - component: {fileID: 212656825874950852}
   - component: {fileID: 58529561294678924}
   - component: {fileID: 50413898405985448}
   - component: {fileID: 114501500927328752}
+  - component: {fileID: 114352924408351616}
   m_Layer: 0
   m_Name: asteroid_medium1
   m_TagString: Untagged
@@ -33,7 +48,7 @@ GameObject:
 --- !u!4 &4607904199430442
 Transform:
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1305869129050938}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -47,7 +62,7 @@ Transform:
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1305869129050938}
   m_BodyType: 0
@@ -66,7 +81,7 @@ Rigidbody2D:
 --- !u!58 &58529561294678924
 CircleCollider2D:
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1305869129050938}
   m_Enabled: 1
@@ -78,10 +93,26 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.3
+--- !u!114 &114352924408351616
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1305869129050938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90a26422aca472f42bb300ac6f10e827, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  asteroidPieces:
+  - {fileID: 1246081262640410, guid: 1a294237800981b428102bb37f4a8d61, type: 2}
+  - {fileID: 1246081262640410, guid: 1a294237800981b428102bb37f4a8d61, type: 2}
+  spawnAmount: 4
+  maxVelocity: 3
 --- !u!114 &114501500927328752
 MonoBehaviour:
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1305869129050938}
   m_Enabled: 1
@@ -94,7 +125,7 @@ MonoBehaviour:
 --- !u!212 &212656825874950852
 SpriteRenderer:
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1305869129050938}
   m_Enabled: 1
@@ -136,4 +167,3 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0

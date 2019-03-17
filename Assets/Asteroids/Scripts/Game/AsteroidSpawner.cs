@@ -6,6 +6,15 @@ namespace Asteroids
 {
     public class AsteroidSpawner : MonoBehaviour
     {
+
+        // Singleton
+        public static AsteroidSpawner Instancey;
+
+        void Awake()
+        {
+            Instancey = this;
+        }
+
         public GameObject[] asteroidPrefabs; // Array of prefabs to spawn
         public float spawnRate = 1f; // Rate of spawn (in seconds)
         public float spawnRadius = 5f; // Distance to spawn each asteroid
@@ -49,21 +58,21 @@ namespace Asteroids
 
         //Spawns an asteroid at a position specified
 
-        public void Spawn(GameObject prefab, Vector3 position)
+        public static void Spawn(GameObject prefab, Vector3 position)
         {
             // Randomize a rotation for the asteroid
             Quaternion randomRot = Quaternion.Euler(0f, 0f, Random.Range(0f, 360f));
 
             // Spawn a random asteroid at random position and default Quaternion rotation
 
-            GameObject asteroid = Instantiate(prefab, position, randomRot, transform);
+            GameObject asteroid = Instantiate(prefab, position, randomRot, Instancey.transform);
 
             // Get Rigidbody 2D from asteroid
 
             Rigidbody2D rigid = asteroid.GetComponent<Rigidbody2D>();
 
             // Apply random force to rigidbody
-            Vector2 randomForce = Random.insideUnitCircle * maxVelocity;
+            Vector2 randomForce = Random.insideUnitCircle * Instancey.maxVelocity;
             rigid.AddForce(randomForce, ForceMode2D.Impulse);
         }
 
