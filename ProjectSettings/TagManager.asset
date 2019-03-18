@@ -6,6 +6,8 @@ TagManager:
   tags:
   - NPC
   - Item
+  - CheckPoint
+  - Danger
   layers:
   - Default
   - TransparentFX

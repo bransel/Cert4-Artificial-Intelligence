@@ -12,6 +12,7 @@ public class Data
     public string playerName;
     public float maxHP;
     public float curHP;
+    public float x, y, z;
 
     public Data(PlayerGame player) 
         // referencing the playergame script and converting it inbetween
@@ -22,6 +23,9 @@ public class Data
         playerName = player.name;
         maxHP = player.maxHP;
         curHP = player.curHP;
+        x = player.x;
+        y = player.y;
+        z = player.z;
     }
 
 

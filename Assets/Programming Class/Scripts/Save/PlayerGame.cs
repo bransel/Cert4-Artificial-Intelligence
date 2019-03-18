@@ -12,8 +12,12 @@ public class PlayerGame : MonoBehaviour {
     public new string name;
     public float maxHP;
     public float curHP;
+    public float x, y, z; 
     //reference to the Healthbar script, and giving it a reference health for this script.
     public HealthBar health;
+
+    public Checkpoint.CheckPoint checkPoint; 
+
 
     #endregion
     // Use this for initialization
@@ -23,6 +27,9 @@ public class PlayerGame : MonoBehaviour {
         maxHP = health.maxHealth;
         curHP = health.curHealth;
         Save.SaveData(this);
+       x = checkPoint.curCheckPoint.position.x;
+         y = checkPoint.curCheckPoint.position.y;
+        z = checkPoint.curCheckPoint.position.z;
     }
     
     public void LoadData()
@@ -37,6 +44,11 @@ public class PlayerGame : MonoBehaviour {
         maxHP = data.maxHP;
         health.maxHealth = maxHP;
         health.curHealth = curHP;
+        x = data.x;
+        y = data.y;
+        z = data.z;
+        Debug.Log(z);
+        this.transform.position = new Vector3(x, y, z);
 
     }
 
