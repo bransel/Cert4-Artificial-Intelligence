@@ -21,6 +21,9 @@ public class CameraOrbit : MonoBehaviour
     void Start()
     {
 
+        // Vector 3 euler = transform.eulerAngles;
+        //x = euler.y;
+        // y= euler.x;
 
     }
 
