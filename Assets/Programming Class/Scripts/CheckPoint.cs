@@ -38,16 +38,17 @@ namespace Checkpoint
         private void Update()
         {
             //if our characters health is less than or equal to 0
-            if (health1.curHealth <= 0 )
+            if (health1.curHealth <= 0)
             {
 
                 //our transform.position is equal to that of the checkpoint or float x,y,z
                 transform.position = curCheckPoint.position;
                 //our characters health is equal to full health
-                health1.curHealth = health1.maxHealth; 
+                health1.curHealth = health1.maxHealth;
                 //character is alive
                 //characters controller is active	
             }
+
 
         }
         #endregion
