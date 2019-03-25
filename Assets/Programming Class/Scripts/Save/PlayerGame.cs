@@ -13,7 +13,7 @@ public class PlayerGame : MonoBehaviour
     public new string name;
     public float maxHP;
     public float curHP;
-    public float x, y, z;
+    public float x, y, z, rx, ry, rz;
     public float maxMP, curMP, maxStam, curStam, exp, curXP;
     //reference to the Healthbar script, and giving it a reference health for this script.
     public HealthBar health;
@@ -36,11 +36,23 @@ public class PlayerGame : MonoBehaviour
         exp = bars.exP;
         curXP = bars.curXp;
 
-        x = checkPoint.curCheckPoint.position.x;
-        y = checkPoint.curCheckPoint.position.y;
-        z = checkPoint.curCheckPoint.position.z;
+        //x = checkPoint.curCheckPoint.position.x;
+        //y = checkPoint.curCheckPoint.position.y;
+        //z = checkPoint.curCheckPoint.position.z;
+        x = transform.position.x;
+        y = transform.position.y;
+        z = transform.position.z;
+        rx = transform.eulerAngles.x;
+        ry = transform.eulerAngles.y;
+        rz = transform.eulerAngles.z;
+
+
+
+
         Save.SaveData(this);
     }
+
+    
 
     public void LoadData()
     {
@@ -65,7 +77,9 @@ public class PlayerGame : MonoBehaviour
         x = data.x;
         y = data.y;
         z = data.z;
-
+        rx = data.rx;
+        ry = data.ry;
+        rz = data.rz;
         this.transform.position = new Vector3(x, y, z);
 
     }
@@ -77,11 +91,14 @@ public class PlayerGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        SaveFunction();
         if (Input.GetKeyDown(KeyCode.F12))
         {
-            SaveFunction();
-            Debug.Log("Saved" + name);
+            //SaveFunction();
+            Debug.Log("Saved");
         }
+        
 
         if (Input.GetKeyDown(KeyCode.F10))
         {

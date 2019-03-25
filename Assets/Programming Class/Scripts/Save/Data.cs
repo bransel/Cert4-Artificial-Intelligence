@@ -12,7 +12,7 @@ public class Data
     public string playerName;
     public float maxHP;
     public float curHP;
-    public float x, y, z;
+    public float x, y, z, rx, ry, rz;
     public float maxMP, curMP, maxStam, curStam, exp, curXP;
 
     public Data(PlayerGame player) 
@@ -32,6 +32,9 @@ public class Data
         curStam = player.curStam;
         exp = player.exp;
         curXP = player.curXP;
+        rx = player.rx;
+        ry = player.ry;
+        rz = player.rz;
     }
 
 
