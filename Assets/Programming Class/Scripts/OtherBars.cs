@@ -115,7 +115,7 @@ public class OtherBars : MonoBehaviour
         if (curXp <= 0 && xpFill.enabled)
 
         {
-            Debug.Log("Out of Stamina");
+            
             xpFill.enabled = false;
         }
 
