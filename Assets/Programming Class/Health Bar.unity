@@ -525,7 +525,7 @@ RectTransform:
   m_GameObject: {fileID: 227964732}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
+  m_LocalScale: {x: -0.02, y: 0.02, z: 0.02}
   m_Children:
   - {fileID: 1728545089}
   m_Father: {fileID: 2028702565}
@@ -1056,6 +1056,9 @@ MonoBehaviour:
   x: 0
   y: 0
   z: 0
+  rx: 0
+  ry: 0
+  rz: 0
   maxMP: 0
   curMP: 0
   maxStam: 0
@@ -2671,7 +2674,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.6462264, b: 0.7143549, a: 1}
+  m_Color: {r: 0.5188679, g: 0, b: 0.098008454, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3888,6 +3891,7 @@ GameObject:
   - component: {fileID: 2028702563}
   - component: {fileID: 2028702562}
   - component: {fileID: 2028702561}
+  - component: {fileID: 2028702566}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -3906,10 +3910,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76dc2a1bfc3f2934fb8749b25669caa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curHP: 100
+  curHP: 100.99
   maxHP: 100
-  healthBar: {fileID: 1728545090}
-  myCanvas: {fileID: 227964733}
+  healthBar: {fileID: 0}
+  myCanvas: {fileID: 0}
 --- !u!136 &2028702562
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3979,6 +3983,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2028702566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2028702560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 141974f4f811db94e96faff08568d08c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrW: 0
+  scrH: 0
 --- !u!1 &2051849534
 GameObject:
   m_ObjectHideFlags: 0
