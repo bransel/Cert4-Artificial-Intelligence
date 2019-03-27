@@ -4,13 +4,21 @@ using UnityEngine;
 
 public class Placeable : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    public bool isAvailable = true;
+    public Transform pivotPoint;
+
+    /// <summary>
+    /// Returns the pivot point attached to tile
+    /// </summary>
+    /// <returns></returns>
+    public Vector3 GetPivotPoint()
+    {
+        if (pivotPoint == null)
+            return transform.position;
+
+        return pivotPoint.position;
+
+    }
+
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }
