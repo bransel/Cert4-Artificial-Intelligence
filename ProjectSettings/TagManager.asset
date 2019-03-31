@@ -8,6 +8,9 @@ TagManager:
   - Item
   - CheckPoint
   - Danger
+  - Terrain
+  - Block
+  - End
   layers:
   - Default
   - TransparentFX
@@ -18,8 +21,8 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
-  - 
+  - Terrain
+  - Blocks
   - 
   - 
   - 
