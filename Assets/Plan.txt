@@ -1,0 +1,20 @@
+Put collider on Placeable (tigger) and placed both(has rigidbody)
+make sure they are tagged
+
+OnTriggerEnter(Collider other)
+
+or
+OnTriggerStay
+
+if(other.transform.compareTag("Placed"))
+{
+Each Child
+renderColour = color.Red;
+place script.can place = false
+}
+
+OnTriggerExit
+
+Green
+
+canplace = true

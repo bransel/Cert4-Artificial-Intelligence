@@ -11,6 +11,7 @@ TagManager:
   - Terrain
   - Block
   - End
+  - Placeable
   layers:
   - Default
   - TransparentFX
