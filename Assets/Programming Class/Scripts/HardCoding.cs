@@ -21,7 +21,7 @@ public class HardCoding : MonoBehaviour {
         {
             for (int y = 0; y < 9; y++)
             {
-                GUI.Box(new Rect(scrW*x, scrH*y, scrW, scrH), " "  );
+                GUI.Box(new Rect(scrW*x, scrH*y, scrW, scrH), " 0"  );
             }
         }
     }

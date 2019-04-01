@@ -928,6 +928,7 @@ GameObject:
   - component: {fileID: 473951612}
   - component: {fileID: 473951610}
   - component: {fileID: 473951613}
+  - component: {fileID: 473951614}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1158,6 +1159,26 @@ MonoBehaviour:
   maxY: 60
   mX: 0
   mY: 0
+--- !u!114 &473951614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 473951601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b324e4e4b3b84ef4f9f9cc31d38bf15d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showDlg: 1
+  dlgText:
+  - Woopie
+  - yaho ?
+  - ok
+  - OK
+  scr: {x: 0, y: 0}
+  index: 0
+  optionsIndex: 1
 --- !u!1001 &596996480
 Prefab:
   m_ObjectHideFlags: 0
@@ -3912,7 +3933,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curHP: 100.99
   maxHP: 100
-  healthBar: {fileID: 0}
+  healthBar: {fileID: 1728545090}
   myCanvas: {fileID: 0}
 --- !u!136 &2028702562
 CapsuleCollider:
@@ -3989,7 +4010,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2028702560}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 141974f4f811db94e96faff08568d08c, type: 3}
   m_Name: 
