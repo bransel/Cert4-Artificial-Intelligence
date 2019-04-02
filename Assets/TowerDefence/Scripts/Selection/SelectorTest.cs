@@ -6,8 +6,9 @@ public class SelectorTest : MonoBehaviour
 {
     public enum PlacementMode
     {
-        Tile = 0,
-        Tower = 1
+        Nothing = 0,
+        Tile = 1,
+        Tower = 2
     }
 
     [Header("Tiles")]
@@ -17,7 +18,7 @@ public class SelectorTest : MonoBehaviour
     public GameObject[] towers;
     public GameObject[] towerHolograms;
 
-    public PlacementMode currentMode = PlacementMode.Tile;
+    public PlacementMode currentMode = PlacementMode.Nothing;
 
     [Header("Raycasts")]
     public float rayDistance = 1000f;
@@ -55,15 +56,31 @@ public class SelectorTest : MonoBehaviour
     void Update()
     {
         // Disable all holograms at the start of the frame
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SetMode(0);
+        }
+
         DisableAllHolograms();
 
         // Create ray from mouse position on Camera
         Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Ray CamPos = Camera.main.ScreenPointToRay(Input.mousePosition);
+
 
         RaycastHit hit; //raycasthit variable stores a number of information depending on what the raycast hit
 
         // Perform raycast
+        if (currentMode == PlacementMode.Tile)
+        {
+            hitlayers = hitlayers = LayerMask.GetMask("Terrain");
+        }
+
+        if (currentMode == PlacementMode.Tower)
+        {
+            hitlayers = LayerMask.GetMask("TowerPlace");
+        }
+
         if (Physics.Raycast(mouseRay, out hit, rayDistance, hitlayers, triggerInteraction)) //physics.raycast(mouseray,out hit) gives you a true or false value
                                                                                             //If true is returned, hitInfo will contain more information about where the collider was hit.
                                                                                             // if(Physics.SphereCast(CamPos, SR, out hit, rayDistance, hitlayers, triggerInteraction))
@@ -77,33 +94,52 @@ public class SelectorTest : MonoBehaviour
             }
 
 
-            GameObject prefab = null;
-            GameObject hologram = null;
+              GameObject prefab = null;
+             GameObject hologram = null;
+            
 
             switch (currentMode)
             {
+                case PlacementMode.Nothing:
+                    
+                    break;
                 case PlacementMode.Tile:
                     prefab = tiles[currentTileIndex];
                     hologram = tileHolograms[currentTileIndex];
+                    //hitlayers = LayerMask.GetMask("Terrain");
                     break;
                 case PlacementMode.Tower:
                     prefab = towers[currentTowerIndex];
                     hologram = towerHolograms[currentTowerIndex];
+                    //hitlayers = LayerMask.GetMask("TowerPlace");
                     break;
-                default:
+                default: 
+
+                      
+                
                     break;
             }
 
             if (hologram)
             {
                 hologram.SetActive(true);
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    hologram.transform.Rotate(0, holoRot, 0);
+                }
                 hologram.transform.position = placeablePoint;
 
                 if (Input.GetMouseButtonDown(0))
                 {
                     // Actual tower is the actual tower and not the tetris blocks
+                    Transform cylinder = hit.collider.GetComponent<Transform>();
                     GameObject clone = Instantiate(prefab);
                     clone.transform.position = placeablePoint;
+                    clone.transform.rotation = hologram.transform.rotation;
+                    bool ok = true; 
+                    clone.transform.SetParent(cylinder, ok);
+                  
+                    RandomTower();
 
                     if (placeable)
                     {
