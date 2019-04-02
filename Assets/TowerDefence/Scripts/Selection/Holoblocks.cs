@@ -13,18 +13,25 @@ public class Holoblocks : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if(Trig == true)
+        {
+            Debug.Log("Cannot place blocks");
+        }
 		
 	}
 
     private void OnTriggerEnter(Collider other)
     {
-        Trig = true;
-        Debug.Log("Cannot place blocks");
+        if(other.gameObject.CompareTag("Block")){
+            Trig = true; }
+
+        
     }
 
     private void OnTriggerExit(Collider other)
     {
         Trig = false;
+            
     }
 
 }

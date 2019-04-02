@@ -22,7 +22,7 @@ GameObject:
   m_Layer: 0
   m_Name: HoloZ
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 23661728688237850}
   - component: {fileID: 65084636128474164}
   - component: {fileID: 208926905280412220}
+  - component: {fileID: 114883083991140882}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -57,6 +58,7 @@ GameObject:
   - component: {fileID: 23481327254264856}
   - component: {fileID: 65261542828664346}
   - component: {fileID: 208640572756302148}
+  - component: {fileID: 114172756935489230}
   m_Layer: 0
   m_Name: Cube (3)
   m_TagString: Untagged
@@ -76,6 +78,7 @@ GameObject:
   - component: {fileID: 23635497422232022}
   - component: {fileID: 65637161534752036}
   - component: {fileID: 208905729741853212}
+  - component: {fileID: 114697326842758630}
   m_Layer: 0
   m_Name: Cube (2)
   m_TagString: Untagged
@@ -95,6 +98,7 @@ GameObject:
   - component: {fileID: 23664899870507630}
   - component: {fileID: 65075920951479876}
   - component: {fileID: 208878524914438266}
+  - component: {fileID: 114115626217784134}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -109,7 +113,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1669634056510736}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1, y: 0.5, z: -2}
+  m_LocalPosition: {x: 0.5, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4791503114317830}
@@ -122,7 +126,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1915156160850190}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: -3}
+  m_LocalPosition: {x: -0.5, y: 0.5, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4791503114317830}
@@ -135,7 +139,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1668690940486120}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1, y: 0.5, z: -1}
+  m_LocalPosition: {x: 0.5, y: 0.5, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4791503114317830}
@@ -165,7 +169,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1166802659886678}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: -2}
+  m_LocalPosition: {x: -0.5, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4791503114317830}
@@ -387,6 +391,54 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114115626217784134
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1915156160850190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea9a74a6d74ec4b4f88f538bc5e14dfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Trig: 0
+--- !u!114 &114172756935489230
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1668690940486120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea9a74a6d74ec4b4f88f538bc5e14dfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Trig: 0
+--- !u!114 &114697326842758630
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1669634056510736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea9a74a6d74ec4b4f88f538bc5e14dfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Trig: 0
+--- !u!114 &114883083991140882
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1166802659886678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea9a74a6d74ec4b4f88f538bc5e14dfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Trig: 0
 --- !u!208 &208640572756302148
 NavMeshObstacle:
   m_ObjectHideFlags: 1

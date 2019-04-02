@@ -23,6 +23,8 @@ GameObject:
   - component: {fileID: 23205475007293060}
   - component: {fileID: 65612379235226132}
   - component: {fileID: 208573752105996522}
+  - component: {fileID: 114679864720657058}
+  - component: {fileID: 114789109991577376}
   m_Layer: 0
   m_Name: Cube (2)
   m_TagString: Untagged
@@ -42,6 +44,8 @@ GameObject:
   - component: {fileID: 23044497326659408}
   - component: {fileID: 65797551912549848}
   - component: {fileID: 208565401736176710}
+  - component: {fileID: 114070495674121050}
+  - component: {fileID: 114337424195526184}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -76,6 +80,8 @@ GameObject:
   - component: {fileID: 23128858249596574}
   - component: {fileID: 65297519189952154}
   - component: {fileID: 208758310036986934}
+  - component: {fileID: 114282857124807464}
+  - component: {fileID: 114255859304790334}
   m_Layer: 0
   m_Name: Cube (3)
   m_TagString: Untagged
@@ -95,6 +101,8 @@ GameObject:
   - component: {fileID: 23216532492335312}
   - component: {fileID: 65937664431989978}
   - component: {fileID: 208902785281827264}
+  - component: {fileID: 114898800799543376}
+  - component: {fileID: 114273939290244006}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -387,6 +395,106 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114070495674121050
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1145865882488822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea9a74a6d74ec4b4f88f538bc5e14dfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Trig: 0
+--- !u!114 &114255859304790334
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1471176709453530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9e0530dec3130a4d9de25d021b1a2fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAvailable: 1
+  pivotPoint: {fileID: 0}
+--- !u!114 &114273939290244006
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1551402576740430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9e0530dec3130a4d9de25d021b1a2fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAvailable: 1
+  pivotPoint: {fileID: 0}
+--- !u!114 &114282857124807464
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1471176709453530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea9a74a6d74ec4b4f88f538bc5e14dfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Trig: 0
+--- !u!114 &114337424195526184
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1145865882488822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9e0530dec3130a4d9de25d021b1a2fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAvailable: 1
+  pivotPoint: {fileID: 0}
+--- !u!114 &114679864720657058
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1122862035610652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea9a74a6d74ec4b4f88f538bc5e14dfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Trig: 0
+--- !u!114 &114789109991577376
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1122862035610652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9e0530dec3130a4d9de25d021b1a2fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAvailable: 1
+  pivotPoint: {fileID: 0}
+--- !u!114 &114898800799543376
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1551402576740430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea9a74a6d74ec4b4f88f538bc5e14dfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Trig: 0
 --- !u!208 &208565401736176710
 NavMeshObstacle:
   m_ObjectHideFlags: 1
