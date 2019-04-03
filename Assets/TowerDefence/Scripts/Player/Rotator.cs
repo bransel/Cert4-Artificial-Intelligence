@@ -5,6 +5,7 @@ using UnityEngine;
 public class Rotator : MonoBehaviour {
     public float y;
     public float rotSpeed = 2;
+    public float autoRotSpeed = 1;
 	// Use this for initialization
 	void Start () {
 		
@@ -15,6 +16,18 @@ public class Rotator : MonoBehaviour {
 
         this.gameObject.transform.Rotate(0, y, 0);
 
+        //autoRotate();
+        AD();
+
+        }
+     
+		
+	void autoRotate()
+    {
+        y = autoRotSpeed *Time.deltaTime;
+    }
+
+    void AD(){
         if (Input.GetKey(KeyCode.D))
         {
             y = rotSpeed * Time.deltaTime;
@@ -24,6 +37,5 @@ public class Rotator : MonoBehaviour {
             y = -rotSpeed * Time.deltaTime;
         }
         else { y = 0; }
-		
-	}
-}
+    }
+    }
