@@ -11,10 +11,12 @@ public class CanvasDialogue : MonoBehaviour {
     private GameObject next;
     private Button backB;
     private Button nextB;
+   // public bool showDlg;
 
     // Use this for initialization
     void Start () {
-       currentText = this.GetComponent<Text>();
+        
+    currentText = this.GetComponent<Text>();
         back = transform.Find("Back").gameObject;
         next = transform.Find("Next").gameObject;
         backB = back.GetComponent<Button>();
@@ -24,36 +26,45 @@ public class CanvasDialogue : MonoBehaviour {
     // Update is called once per frame
     void Update() {
 
-        currentText.text = dlgText[index];
+      //  if (showDlg){
+            currentText.text = dlgText[index];
 
-        if (index == 0)
-        {
-            back.SetActive(false);
-        }
-        else if (index < dlgText.Length -1)
-        {
-          back.SetActive(true);
-            Debug.Log(dlgText.Length);
+            if (index == 0)
+            {
+                back.SetActive(false);
+            }
+            else if (index < (dlgText.Length - 1))
+            {
+                back.SetActive(true);
+                Debug.Log("Array Length =" + (dlgText.Length));
+                Debug.Log("Index = " + (index));
+            }
 
-        }
+            else if (index == (dlgText.Length - 1))
+            {
 
-        else if (index == dlgText.Length)
-        {
-
-            Text text = next.GetComponentInChildren<Text>();
-            text.text = "DONE";
-
-        
+                Text text = next.GetComponentInChildren<Text>();
+                text.text = "DONE";
 
 
-        }
 
+
+
+            }
+       // }
 
 	}
 
     public void Next()
     {
-        index += 1; 
+        if (index < dlgText.Length - 1)
+        {
+            index += 1;
+        }
+        else if (index == dlgText.Length - 1)
+        {
+            this.transform.parent.gameObject.SetActive(false);
+        }
     }
 
     public void Back()

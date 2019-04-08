@@ -13,6 +13,8 @@ public class Interact : MonoBehaviour
     //create two gameobject variables one called player and the other mainCam
     public GameObject player;
     public GameObject mainCamera;
+
+
     #endregion
     #region Start
     //connect our player to the player variable via tag
@@ -38,7 +40,7 @@ public class Interact : MonoBehaviour
 
             //if this physics raycast hits something within 10 units
 
-            if (Physics.Raycast(interact, out hitInfo, 10))
+            if (Physics.Raycast(interact, out hitInfo, 30))
             {
                 #region NPC tag
 
@@ -46,8 +48,26 @@ public class Interact : MonoBehaviour
 
                 if (hitInfo.collider.CompareTag("NPC"))
                 {
+                    Dialogue dlg = hitInfo.transform.GetComponent<Dialogue>();
+                    CanvasDialogue dialogue = hitInfo.transform.GetComponent<CanvasDialogue>();
+                    if(dlg != null)
+                    {
+                        dlg.showDlg = true;
+                        Movement.canMove = false;
+                        Cursor.lockState = CursorLockMode.Confined;
+                        Cursor.visible = true; 
+                    }
+                   /* if(dialogue != null)
+                    {
+                        dialogue.showDlg = true;
+                        Movement.canMove = false;
+                        Cursor.lockState = CursorLockMode.Confined;
+                        Cursor.visible = true;
+                    }
+                    */
                     //Debug that we hit a NPC
                     Debug.Log("NPC");
+
                 }
                 #endregion
 

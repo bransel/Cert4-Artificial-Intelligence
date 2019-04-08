@@ -21,6 +21,7 @@ public class Movement : MonoBehaviour
     //public float variables jumpSpeed, speed, gravity
     public float jumpSpeed = 10;
     public float speed = 5, gravity = 20, sprintSpeed = 10, normSpeed = 5, crouchSpeed = 1f;
+    public static bool canMove =true;
 
     //original pos
    public Vector3 height; 
@@ -42,62 +43,66 @@ public class Movement : MonoBehaviour
     private void Update()
     {
 
-
-        if (Input.GetButton("Crouch"))
+        if (canMove)
         {
-            speed = crouchSpeed;
-
-        }
-        else if (Input.GetButton("Sprint"))
-        {
-            speed = sprintSpeed;
-        }
-
-        else
-        {
-            speed = normSpeed;
-
-        }
-
-        //if our character is grounded
-        if (_characterController.isGrounded)
-        {
-            //we are able to move in game scene meaning
-
-            // speed = normSpeed;
-            //Input Manager(https://docs.unity3d.com/Manual/class-InputManager.html)
-            //Input(https://docs.unity3d.com/ScriptReference/Input.html)
-            //moveDir is equal to a new vector3 that is affected by Input.Get Axis.. Horizontal, 0, Vertical
-            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-
-            //moveDir is transformed in the direction of our moveDir
-            moveDirection = transform.TransformDirection(moveDirection);
-
-            //our moveDir is then multiplied by our speed
-            moveDirection *= speed;
-
-            if (Input.GetButton("Jump"))
-
+            if (Input.GetButton("Crouch"))
             {
-                //in the input button for jump is pressed then 
-                //our moveDir.y is equal to our jump speed
+                speed = crouchSpeed;
 
-                moveDirection.y = jumpSpeed;
             }
+            else if (Input.GetButton("Sprint"))
+            {
+                speed = sprintSpeed;
+            }
+
+            else
+            {
+                speed = normSpeed;
+
+            }
+
+            //if our character is grounded
+            if (_characterController.isGrounded)
+            {
+                //we are able to move in game scene meaning
+
+                // speed = normSpeed;
+                //Input Manager(https://docs.unity3d.com/Manual/class-InputManager.html)
+                //Input(https://docs.unity3d.com/ScriptReference/Input.html)
+                //moveDir is equal to a new vector3 that is affected by Input.Get Axis.. Horizontal, 0, Vertical
+                moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+
+                //moveDir is transformed in the direction of our moveDir
+                moveDirection = transform.TransformDirection(moveDirection);
+
+                //our moveDir is then multiplied by our speed
+                moveDirection *= speed;
+
+                if (Input.GetButton("Jump"))
+
+                {
+                    //in the input button for jump is pressed then 
+                    //our moveDir.y is equal to our jump speed
+
+                    moveDirection.y = jumpSpeed;
+                }
+            }
+            //we can also jump if we are grounded so
+
+
+            //test sprinting
+            // It works for GetButton but not for Keydown? 
+
+
+            //regardless of if we are grounded or not the players moveDir.y is always affected by gravity timesed my time.deltaTime to normalize it
+            //we then tell the character Controller that it is moving in a direction timesed Time.deltaTime
+            moveDirection.y -= gravity * Time.deltaTime;
+            _characterController.Move(moveDirection * Time.deltaTime);
+
         }
-        //we can also jump if we are grounded so
-    
-
-        //test sprinting
-        // It works for GetButton but not for Keydown? 
-
-
-        //regardless of if we are grounded or not the players moveDir.y is always affected by gravity timesed my time.deltaTime to normalize it
-        //we then tell the character Controller that it is moving in a direction timesed Time.deltaTime
-        moveDirection.y -= gravity * Time.deltaTime;
-        _characterController.Move(moveDirection * Time.deltaTime);
 
     }
+       
 
     #endregion
 }
