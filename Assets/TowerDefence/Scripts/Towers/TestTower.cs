@@ -22,7 +22,7 @@ public class TestTower : MonoBehaviour
     }
 
     #region Old Code
-    /*private void OnDrawGizmosSelected()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
         // Draw the attack sphere around Tower
@@ -30,7 +30,7 @@ public class TestTower : MonoBehaviour
     }
 
     // Aims at a given enemy every frame
-    public virtual void Aim(TowerEnemy e)
+    public virtual void Aim(TowerEnemyTest e)
     {
 
         print("I am aiming at '" + e.name + "'");
@@ -38,7 +38,7 @@ public class TestTower : MonoBehaviour
 
 
     //Attacks at a given enemy only when 'attacking'
-    public virtual void Attack(TowerEnemy e)
+    public virtual void Attack(TowerEnemyTest e)
     {
         print("I am attacking at '" + e.name + "'");
     }
@@ -53,7 +53,7 @@ public class TestTower : MonoBehaviour
 
         foreach (var hit in hits)
         {
-            TowerEnemy enemy = hit.GetComponent<TowerEnemy>();
+            TowerEnemyTest enemy = hit.GetComponent<TowerEnemyTest>();
             if (enemy)
             {
                 // Set current enemy to that one
@@ -86,7 +86,7 @@ public class TestTower : MonoBehaviour
                 attackTimer = 0f;
             }
         }
-    }*/
+    }
     #endregion
 }
 

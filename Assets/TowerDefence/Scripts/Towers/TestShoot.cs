@@ -4,12 +4,22 @@ using UnityEngine;
 
 public class TestShoot : MonoBehaviour
 {
+
+    public SelectorTest Selector;
+    private GameObject SelectorOwner;
     public float attackRate = 1f;
     private float attackTimer = 0f;
     public GameObject projectilePrefab;
     public Transform point;
+    public int BlueCheck;
+
     // Use this for initialization
     void Start() {
+
+        SelectorOwner = GameObject.Find("Main Camera");
+        Selector = SelectorOwner.GetComponent<SelectorTest>();
+        BlueCheck = Selector.BlueX;
+        attackRate += BlueCheck;
     }
 
 

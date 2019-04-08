@@ -12,6 +12,7 @@ TagManager:
   - Block
   - End
   - Placeable
+  - Resource
   layers:
   - Default
   - TransparentFX

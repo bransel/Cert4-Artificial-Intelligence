@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(LineRenderer))]
 
 public class TestCannon : TestTower
-{/*
+{
 
     public Transform orb;
     public float lineDelay = .2f;
@@ -33,7 +33,7 @@ public class TestCannon : TestTower
         line.enabled = false; 
     }
 
-    public override void Aim(TowerEnemy e)
+    public override void Aim(TowerEnemyTest e)
     {
         // Get orb to look at enemy
         orb.LookAt(e.transform);
@@ -42,7 +42,7 @@ public class TestCannon : TestTower
         line.SetPosition(1, e.transform.position);
     }
 
-    public override void Attack(TowerEnemy e)
+    public override void Attack(TowerEnemyTest e)
     {
         // Enable the line
         line.enabled = true;
@@ -50,5 +50,5 @@ public class TestCannon : TestTower
         e.TakeDamage(damage);
         // Run coroutine to disbale hte line on a delay
         StartCoroutine(DisableLine());
-    }*/
+    }
 }

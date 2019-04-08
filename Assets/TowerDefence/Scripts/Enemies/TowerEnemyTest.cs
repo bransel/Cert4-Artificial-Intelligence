@@ -2,23 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 [RequireComponent(typeof(NavMeshAgent))]
 
 public class TowerEnemyTest : MonoBehaviour {
 
 
-    public int maxHealth = 100;
+    public float maxHealth = 100;
 
     // endpoint of the navmesh for the enemies to go towards
     public Transform target;
     private TowerHP currentEnemy;
     private NavMeshAgent agent;
-        private float health = 0;
+        public float health = 0;
     public GameObject end;
     public float attackRange =2f;
-   
+    public Slider healthBar;
+    public Canvas myCanvas;
+    public GameObject resource;
+    public ResourceManager resources;
+    public int pointValue = 5;
 
-    
     // Use this for initialization
     void Start()
     {
@@ -26,9 +30,13 @@ public class TowerEnemyTest : MonoBehaviour {
         health = maxHealth;
         // Getting the navmesh component
         agent = GetComponent<NavMeshAgent>();
-       
+        myCanvas = transform.Find("Canvas").GetComponent<Canvas>();
+        healthBar = myCanvas.transform.Find("Slider").GetComponent<Slider>();
+        //resource = GameObject.FindGameObjectWithTag("Resource");
 
-        
+
+     
+
     }
 
 
@@ -39,15 +47,37 @@ public class TowerEnemyTest : MonoBehaviour {
 
 
         {
+
+
+            if (Random.value < 0.15f)
+            {
+               ResourceManager.BPollen += 1;
+                Debug.Log("You found a Blue Pollen!");
+            }
+            if (Random.value < 0.15f)
+            {
+               ResourceManager.YPollen += 1;
+                Debug.Log("You found a Yellow Pollen!");
+            }
+            if (Random.value < 0.15f)
+            {
+                ResourceManager.RPollen += 1;
+                Debug.Log("You found a Rellow Pollen!");
+            }
+
+            ResourceManager.Score += pointValue;
             Destroy(gameObject);
         }
     }
     // Update is called once per frame
     void Update()
     {
+        healthBar.value = Mathf.Clamp01(health / maxHealth);
+        myCanvas.transform.LookAt(Camera.main.transform);
         end = GameObject.FindGameObjectWithTag("End");
+       // ResourceManager resources = resource.GetComponent<ResourceManager>();
 
-        DetectEnemies();
+        /*DetectEnemies();
 
         if (currentEnemy != null)
         {
@@ -55,24 +85,25 @@ public class TowerEnemyTest : MonoBehaviour {
             target = currentEnemy.transform;
             agent.SetDestination(target.position);
 
-       
-
-
-        }
 
 
 
+        }*/
 
 
 
-        else
-        {
 
-            target = end.GetComponent<Transform>();
+
+
+        //else
+        //{
+        target = end.GetComponent<Transform>();
             agent.SetDestination(target.position);
-        }
 
-        // follow destination
+
+            // follow destination
+
+        //}
     }
   
 

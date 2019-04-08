@@ -78,6 +78,8 @@ GameObject:
   - component: {fileID: 114902306694155736}
   - component: {fileID: 65119659875642908}
   - component: {fileID: 54160136972743934}
+  - component: {fileID: 114400406171773158}
+  - component: {fileID: 114240472812996472}
   m_Layer: 0
   m_Name: TestTower
   m_TagString: Untagged
@@ -613,7 +615,7 @@ MonoBehaviour:
   orb: {fileID: 4277992158216200}
   lineDelay: 0.2
   line: {fileID: 120969948988970070}
---- !u!114 &114240959933057370
+--- !u!114 &114240472812996472
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -621,13 +623,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 1438843770679428}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3d3d653fee81c4458177ac4deab8ce9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  attackRate: 1
+  attackRange: 2
+--- !u!114 &114240959933057370
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1438843770679428}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ffba4c02f4ee71f469d95afdf8c07e50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRate: 1
+  Selector: {fileID: 0}
+  attackRate: 2
   projectilePrefab: {fileID: 1320087368564414, guid: 394e84dab9be709478f6d419f1033eef,
     type: 2}
   point: {fileID: 4734094705199400}
+  BlueCheck: 0
 --- !u!114 &114329580672723010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -642,6 +660,23 @@ MonoBehaviour:
   speed: 30
   force: 1
   damage: 20
+--- !u!114 &114400406171773158
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1438843770679428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be22b779df741424fbe54479069d8823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  attackRate: 1
+  attackRange: 2
+  orb: {fileID: 4277992158216200}
+  lineDelay: 0.2
+  line: {fileID: 120969948988970070}
 --- !u!114 &114516423243040728
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -674,7 +709,7 @@ LineRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1438843770679428}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
