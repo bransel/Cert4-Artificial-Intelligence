@@ -16,7 +16,8 @@ public class Spawner : MonoBehaviour {
     }
     void SpawnLoop()
     {
-        Instantiate(enemy);
+        GameObject clone = Instantiate(enemy, transform.position, transform.rotation);
+        clone.SetActive(true);
     }
 
 }

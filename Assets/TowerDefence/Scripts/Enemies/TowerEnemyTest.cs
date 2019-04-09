@@ -5,7 +5,8 @@ using UnityEngine.AI;
 using UnityEngine.UI;
 [RequireComponent(typeof(NavMeshAgent))]
 
-public class TowerEnemyTest : MonoBehaviour {
+public class TowerEnemyTest : MonoBehaviour
+{
 
 
     public float maxHealth = 100;
@@ -14,18 +15,38 @@ public class TowerEnemyTest : MonoBehaviour {
     public Transform target;
     private TowerHP currentEnemy;
     private NavMeshAgent agent;
-        public float health = 0;
+    public float health = 0;
     public GameObject end;
-    public float attackRange =2f;
+    public float attackRange = 2f;
     public Slider healthBar;
     public Canvas myCanvas;
     public GameObject resource;
     public ResourceManager resources;
     public int pointValue = 5;
 
+    [Header("UI")]
+    public GameObject healthBarPrefab;
+    public Transform healthBarParent;
+    public Vector3 offset = new Vector3(0f, 2f, 0f);
+
+    private Slider healthSlider;
+
+    void OnDestroy()
+    {
+        if (healthSlider)
+        {
+            // Remove from canvas
+            Destroy(healthSlider.gameObject);
+        }
+    }
+
     // Use this for initialization
     void Start()
     {
+        // Spawn UI
+        GameObject clone = Instantiate(healthBarPrefab, healthBarParent);
+        healthSlider = clone.GetComponent<Slider>();
+
         // Set health to whatever the maxhealth is at the start
         health = maxHealth;
         // Getting the navmesh component
@@ -35,7 +56,7 @@ public class TowerEnemyTest : MonoBehaviour {
         //resource = GameObject.FindGameObjectWithTag("Resource");
 
 
-     
+
 
     }
 
@@ -51,18 +72,18 @@ public class TowerEnemyTest : MonoBehaviour {
 
             if (Random.value < 0.15f)
             {
-               ResourceManager.BPollen += 1;
+                ResourceManager.BPollen += 1;
                 Debug.Log("You found a Blue Pollen!");
             }
             if (Random.value < 0.15f)
             {
-               ResourceManager.YPollen += 1;
+                ResourceManager.YPollen += 1;
                 Debug.Log("You found a Yellow Pollen!");
             }
             if (Random.value < 0.15f)
             {
                 ResourceManager.RPollen += 1;
-                Debug.Log("You found a Rellow Pollen!");
+                Debug.Log("You found a Red Pollen!");
             }
 
             ResourceManager.Score += pointValue;
@@ -72,10 +93,16 @@ public class TowerEnemyTest : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        healthBar.value = Mathf.Clamp01(health / maxHealth);
+        float value = Mathf.Clamp01(health / maxHealth);
+
+        // Position UI and Update Value
+        healthSlider.transform.position = Camera.main.WorldToScreenPoint(transform.position + offset);
+        healthSlider.value = value;
+
+        healthBar.value = value;
         myCanvas.transform.LookAt(Camera.main.transform);
-        end = GameObject.FindGameObjectWithTag("End");
-       // ResourceManager resources = resource.GetComponent<ResourceManager>();
+       // end = GameObject.FindGameObjectWithTag("End");
+        // ResourceManager resources = resource.GetComponent<ResourceManager>();
 
         /*DetectEnemies();
 
@@ -97,23 +124,23 @@ public class TowerEnemyTest : MonoBehaviour {
 
         //else
         //{
-        target = end.GetComponent<Transform>();
-            agent.SetDestination(target.position);
+        //target = end.GetComponent<Transform>();
+        agent.SetDestination(target.position);
 
 
-            // follow destination
+        // follow destination
 
         //}
     }
-  
 
- 
+
+
     void DetectEnemies()
     {
         // reset current enemy
         //currentEnemy = null;
         // Perform OverlapSphere
-        Collider[] hits = Physics.OverlapSphere(transform.position, attackRange);
+        Collider[] hits = Physics.OverlapSphere(transform.position, attackRange + 1);
         // Loop through everything we hit
 
         foreach (var hit in hits)
@@ -130,4 +157,4 @@ public class TowerEnemyTest : MonoBehaviour {
     }
 }
 
-   
+

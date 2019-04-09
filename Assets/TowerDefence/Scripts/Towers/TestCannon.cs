@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(LineRenderer))]
 
@@ -10,6 +11,7 @@ public class TestCannon : TestTower
     public Transform orb;
     public float lineDelay = .2f;
     public LineRenderer line;
+    public GameObject Range;
 
     void Reset()
     {
@@ -18,6 +20,8 @@ public class TestCannon : TestTower
 
     protected override void Update()
     {
+      
+
         base.Update();
         // if currentenemy is null
         if (currentEnemy == null)
@@ -25,6 +29,8 @@ public class TestCannon : TestTower
             // disable the line
             line.enabled = false;
         }
+        Range = transform.Find("Range").gameObject;
+        Range.transform.localScale = new Vector3(attackRange/2, 0.01f, attackRange/2);
     }
 
     IEnumerator DisableLine()

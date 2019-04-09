@@ -422,13 +422,13 @@ public void BluePollen()
                         clone.transform.position = placeablePoint;
                         clone.transform.rotation = hologram.transform.rotation;
                         TestTower newTower = clone.GetComponent<TestCannon>();
-                        newTower.attackRate = 2 + BlueX/ 3;
+                        newTower.attackRate = 1.5f + BlueX/ 3f;
                         newTower.damage = 5 - RedX * 5;
-                        newTower.attackRange = 0.5f - YellowX *1.5f; 
+                        newTower.attackRange = 2 - YellowX *1.5f; 
 
 
                         bool ok = true;
-                        clone.transform.SetParent(cylinder, ok);
+                       // clone.transform.SetParent(cylinder, ok);
 
                         RandomTower();
                         createisPressed = false;
