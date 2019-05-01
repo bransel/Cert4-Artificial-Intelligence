@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FPSPlayer : MonoBehaviour
+public class FPSLookAtDirection : MonoBehaviour
 {
-
-
+    public Transform target; // Reference to a target
     // Start is called before the first frame update
     void Start()
     {
@@ -16,5 +15,12 @@ public class FPSPlayer : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void LateUpdate()
+    {
+
+        // Rotate to target direction
+        transform.rotation = Quaternion.LookRotation(target.forward);
     }
 }
