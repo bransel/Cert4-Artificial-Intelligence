@@ -872,6 +872,7 @@ MonoBehaviour:
   crouchSpeed: 4
   jumpHeight: 8
   groundRayDistance: 1.1
+  sprintSpeed: 30
   groundLayer:
     serializedVersion: 2
     m_Bits: 4096
