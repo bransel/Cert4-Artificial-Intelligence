@@ -395,8 +395,111 @@ public class CustomisationSet : MonoBehaviour {
             SetTexture("Clothes", Random.Range(0, clothesMax - 1));
             SetTexture("Armour", Random.Range(0, armourMax - 1));
         }
+        i++;
+        charName = GUI.TextField(new Rect(0.25f*scrW, scrH+i*(0.5f*scrH),2*scrW,0.5f*scrH),charName,16);
+        i++;
+        if (GUI.Button(new Rect(0.25f * scrW, scrH + i * (0.5f * scrH), 2 * scrW, 0.5f * scrH), "Save and Play"))
+        {
+            Save();
+            SceneManager.LoadScene(2);
+        }
+        i = 0;
 
+        GUI.Box(new Rect(3.75f * scrW, scrH + i * (0.5f * scrH), 2 * scrW, 0.5f * scrH),"Class");
+        i++;
+        
+
+        if (GUI.Button(new Rect(3.25f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "<"))
+        {
+            selectedIndex--;
+            if(selectedIndex < 0)
+            {
+                selectedIndex = selectedClass.Length - 1;
+            }
+            ChooseClass(selectedIndex);
+
+        }
+
+        GUI.Box(new Rect(3.75f * scrW, scrH + i * (0.5f * scrH), 2 * scrW, 0.5f * scrH), selectedClass[selectedIndex]);
+        if (GUI.Button(new Rect(5.75f * scrW, scrH + i * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), ">"))
+        {
+            selectedIndex++;
+            if (selectedIndex > selectedClass.Length-1)
+            {
+                selectedIndex = 0;
+            }
+            ChooseClass(selectedIndex);
+
+        }
+        GUI.Box(new Rect(3.75f * scrW, 2f*scrH,2f*scrW,0.5f*scrH), "Points:"+ points);
+        for (int s = 0; s < 6; s++)
+        {
+            if (points > 0)
+            {
+                if(GUI.Button(new Rect(5.75f * scrW, 2.5f * scrH + s * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "+"))
+                {
+                    points--;
+                    tempStats[s]++;
+                }
+            }
+            GUI.Box(new Rect(3.75f * scrW, 2.5f * scrH + s * (0.5f * scrH), 2f * scrW, 0.5f * scrH), statArray[s] + ":" + (tempStats[s] + stats[s]));
+            if (points < 10 && tempStats[s]>0)
+            {
+                if (GUI.Button(new Rect(3.25f * scrW, 2.5f * scrH + s * (0.5f * scrH), 0.5f * scrW, 0.5f * scrH), "-"))
+                {
+                    points++;
+                    tempStats[s]--;
+                }
+            }
+        } 
     }
+
+    void ChooseClass( int className)
+    {
+        switch (className)
+        //"Strength", "Dexterity", "Constitution", "Wisdom", "Intelligence", "Charisma" 
+        {
+            case 0:
+                stats[0] = 15;
+                stats[1] = 10;
+                stats[2] = 15;
+                stats[3] = 10;
+                stats[4] = 10;
+                stats[5] = 10;
+                characterClass = CharacterClass.Warrior;
+                break;
+
+            case 1:
+                stats[0] = 10;
+                stats[1] = 10;
+                stats[2] = 10;
+                stats[3] = 15;
+                stats[4] = 15;
+                stats[5] = 10;
+                characterClass = CharacterClass.Mage;
+                break;
+            case 2:
+                stats[0] = 10;
+                stats[1] = 10;
+                stats[2] = 15;
+                stats[3] = 15;
+                stats[4] = 10;
+                stats[5] = 10;
+                characterClass = CharacterClass.Cleric;
+                break;
+            case 3:
+                stats[0] = 10;
+                stats[1] = 15;
+                stats[2] = 10;
+                stats[3] = 10;
+                stats[4] = 10;
+                stats[5] = 15;
+                characterClass = CharacterClass.Rogue;
+                break;
+
+        } 
+    }
+
     //create the floats scrW and scrH that govern our 16:9 ratio
     //create an int that will help with shuffling your GUI elements under eachother
     #region Skin
