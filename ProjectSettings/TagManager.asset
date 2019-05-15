@@ -27,8 +27,8 @@ TagManager:
   - Blocks
   - TowerPlace
   - Interactable
-  - 
-  - 
+  - Player
+  - Bullet
   - 
   - 
   - 

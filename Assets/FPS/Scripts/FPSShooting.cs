@@ -1,0 +1,35 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class FPSShooting : MonoBehaviour
+{
+
+    public FPSWeapon currentWeapon;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+        // There is a current Weapon
+        if (currentWeapon)
+        {
+            // Is the fire button down?
+            if (Input.GetButtonDown("Fire1"))
+            { 
+                if (currentWeapon.canShoot)
+                {
+                    currentWeapon.Shoot();
+                }
+
+            }
+        }
+
+    }
+}

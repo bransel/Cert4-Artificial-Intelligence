@@ -14,6 +14,7 @@ public class FPSPlayer : MonoBehaviour
     public float sprintSpeed = 10f;
     public LayerMask groundLayer;
 
+
     private CharacterController controller;
     private Vector3 motion;
 
