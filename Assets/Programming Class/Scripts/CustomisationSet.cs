@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
+
 //you will need to change Scenes
 public class CustomisationSet : MonoBehaviour {
+
 
     #region Variables
     [Header("Texture List")]
@@ -120,7 +124,7 @@ public class CustomisationSet : MonoBehaviour {
         #endregion
         //connect and find the SkinnedMeshRenderer thats in the scene to the variable we made for Renderer
         character = GameObject.Find("Mesh").GetComponent<SkinnedMeshRenderer>();
-        SetTexture("Skin", skinIndex= 0);
+        SetTexture("Skin", skinIndex = 0);
         SetTexture("Hair", hairIndex = 0);
         SetTexture("Mouth", mouthIndex = 0);
         SetTexture("Eyes", eyesIndex = 0);
@@ -216,15 +220,15 @@ public class CustomisationSet : MonoBehaviour {
         }
         #region OutSide Switch
         index += dir;
-        if(index<0)
+        if (index < 0)
         { index = max - 1; }
 
-        if (index > max -1)
+        if (index > max - 1)
         {
             index = 0;
         }
-       
-            Material[] mat = character.materials;
+
+        Material[] mat = character.materials;
         mat[matIndex].mainTexture = textures[index];
         character.materials = mat;
         //outside our switch statement
@@ -237,7 +241,7 @@ public class CustomisationSet : MonoBehaviour {
         #endregion
 
         #region Set Material Switch
-        switch(type)
+        switch (type)
         {
             case "Skin":
                 skinIndex = index;
@@ -286,12 +290,24 @@ public class CustomisationSet : MonoBehaviour {
 
     #region Save
 
-    void Save()//Function called Save this will allow us to save our indexes 
-    //SetInt for SkinIndex, HairIndex, MouthIndex, EyesIndex
-    //SetString CharacterName
+    public static void Save(CustomisationSet custom)
     {
-        
+        //Function called Save this will allow us to save our indexes 
+        //SetInt for SkinIndex, HairIndex, MouthIndex, EyesIndex
+        //SetString CharacterName
+
+        BinaryFormatter formatter = new BinaryFormatter();
+        string path = Application.persistentDataPath + "/" + custom.charName +"";
+        FileStream stream = new FileStream(path, FileMode.Create);
+
+        WarriorData data = new WarriorData(custom);
+        formatter.Serialize(stream, data);
+        stream.Close();
     }
+    
+
+
+
 
     #endregion
 
@@ -396,13 +412,16 @@ public class CustomisationSet : MonoBehaviour {
             SetTexture("Armour", Random.Range(0, armourMax - 1));
         }
         i++;
+
         charName = GUI.TextField(new Rect(0.25f*scrW, scrH+i*(0.5f*scrH),2*scrW,0.5f*scrH),charName,16);
+
         i++;
         if (GUI.Button(new Rect(0.25f * scrW, scrH + i * (0.5f * scrH), 2 * scrW, 0.5f * scrH), "Save and Play"))
         {
             Save();
-            SceneManager.LoadScene(2);
+          //  SceneManager.LoadScene(2);
         }
+      
         i = 0;
 
         GUI.Box(new Rect(3.75f * scrW, scrH + i * (0.5f * scrH), 2 * scrW, 0.5f * scrH),"Class");
@@ -555,3 +574,7 @@ public class CustomisationSet : MonoBehaviour {
         Warrior, Mage, Cleric, Rogue
     }
 }
+
+
+
+

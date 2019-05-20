@@ -13,6 +13,7 @@ TagManager:
   - End
   - Placeable
   - Resource
+  - PlayerMesh
   layers:
   - Default
   - TransparentFX
