@@ -26,23 +26,25 @@ public class CustomisationGet : MonoBehaviour {
 
     #region LoadTexture Function
 
-        public static WarriorData LoadData(CustomisationSet custom)
+        public static WarriorData LoadData()
     {
-        string path = Application.persistentDataPath + "/" + custom.charName + "";
-        if (File.Exists(path))
         {
-            BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = new FileStream(path, FileMode.Open);
+            string path = Application.persistentDataPath + "/save";
+            if (File.Exists(path))
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                FileStream stream = new FileStream(path, FileMode.Open);
 
-            WarriorData data = formatter.Deserialize(stream) as WarriorData;
-            stream.Close();
+                WarriorData data = formatter.Deserialize(stream) as WarriorData;
+                stream.Close();
 
-            return data;
+                return data;
 
-        }
-        else
-        {
+            }
+            else
+            {
 
+            }
         }
     }
    public void LoadTexture(CustomisationSet custom) {

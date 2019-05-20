@@ -297,15 +297,18 @@ public class CustomisationSet : MonoBehaviour {
         //SetString CharacterName
 
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/" + custom.charName +"";
+        string path = Application.persistentDataPath + "/save" ;
         FileStream stream = new FileStream(path, FileMode.Create);
 
         WarriorData data = new WarriorData(custom);
         formatter.Serialize(stream, data);
         stream.Close();
     }
-    
 
+    public void SaveSettings()
+    {
+        Save(this);
+    }
 
 
 
