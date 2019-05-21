@@ -7,11 +7,12 @@ using System.IO;
 
 //you will need to change Scenes
 public class CustomisationGet : MonoBehaviour {
-
+    public CustomisationSet custom;
     [Header("Character")]
     //public variable for the Skinned Mesh Renderer which is our character reference
     public Renderer character;
-
+    public int skinIndex, hairIndex, mouthIndex, eyesIndex, clothesIndex, armourIndex, selectedIndex;
+    public string playerName;
     #region Start
     private void Start()
     {
@@ -26,8 +27,8 @@ public class CustomisationGet : MonoBehaviour {
 
     #region LoadTexture Function
 
-        public static WarriorData LoadData()
-    {
+        public static WarriorData LoadData(CustomisationSet Custom)
+    
         {
             string path = Application.persistentDataPath + "/save";
             if (File.Exists(path))
@@ -35,18 +36,18 @@ public class CustomisationGet : MonoBehaviour {
                 BinaryFormatter formatter = new BinaryFormatter();
                 FileStream stream = new FileStream(path, FileMode.Open);
 
-                WarriorData data = formatter.Deserialize(stream) as WarriorData;
+                WarriorData WarriorData = formatter.Deserialize(stream) as WarriorData;
                 stream.Close();
 
-                return data;
+                return WarriorData;
 
             }
             else
             {
-
+            return null;
             }
         }
-    }
+    
    public void LoadTexture(CustomisationSet custom) {
 
 
@@ -130,12 +131,42 @@ public class CustomisationGet : MonoBehaviour {
     #endregion
     private void OnGUI()
     {
+        
         float scrW = Screen.width / 16;
         float scrH = Screen.height / 9;
         if (GUI.Button(new Rect(0.25f * scrW, scrH + 10 * (0.5f * scrH), 2 * scrW, 0.5f * scrH), "Load"))
         {
-            LoadTexture();
+            Sync();
         }
 
+    }
+public void Sync()
+    {
+        WarriorData WarriorData = LoadData(custom);
+        skinIndex = WarriorData.skinIndex;
+        hairIndex = WarriorData.hairIndex;
+        mouthIndex = WarriorData.mouthIndex;
+        eyesIndex = WarriorData.eyesIndex;
+        clothesIndex = WarriorData.clothesIndex;
+        armourIndex = WarriorData.armourIndex;
+        selectedIndex = WarriorData.selectedIndex;
+        string playerName = WarriorData.playerName;
+        Debug.Log(playerName);
+        custom.hairIndex = 0;
+        custom.mouthIndex = 0;
+        custom.eyesIndex =0;
+        custom.clothesIndex = 0;
+        custom.armourIndex =0;
+        
+        custom.skinIndex = 0;
+        custom.SetTexture("Skin", skinIndex);
+
+     custom.SetTexture("Hair", hairIndex);
+        custom.SetTexture("Mouth", mouthIndex);
+         custom.SetTexture("Eyes", eyesIndex);
+         custom.SetTexture("Clothes", clothesIndex);
+        custom.SetTexture("Armour", armourIndex);
+        custom.selectedIndex = selectedIndex;
+        custom.charName = playerName;
     }
 }

@@ -146,7 +146,7 @@ public class CustomisationSet : MonoBehaviour {
     //we need variables that exist only within this function
     //these are ints index numbers, max numbers, material index and Texture2D array of textures
     //inside a switch statement that is swapped by the string name of our material
-    void SetTexture(string type, int dir)
+   public void SetTexture(string type, int dir)
     {
         int index = 0, max = 0, matIndex = 0;
         Texture2D[] textures = new Texture2D[0];
@@ -421,7 +421,7 @@ public class CustomisationSet : MonoBehaviour {
         i++;
         if (GUI.Button(new Rect(0.25f * scrW, scrH + i * (0.5f * scrH), 2 * scrW, 0.5f * scrH), "Save and Play"))
         {
-            Save();
+            SaveSettings();
           //  SceneManager.LoadScene(2);
         }
       

@@ -205,7 +205,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f0a356d67312e54eb59ae9327c46f82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  custom: {fileID: 271946737}
   character: {fileID: 0}
+  skinIndex: 0
+  hairIndex: 0
+  mouthIndex: 0
+  eyesIndex: 0
+  clothesIndex: 0
+  armourIndex: 0
+  selectedIndex: 0
+  playerName: 
 --- !u!1 &515769207
 GameObject:
   m_ObjectHideFlags: 0
