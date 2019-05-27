@@ -10,7 +10,8 @@ public class Inventory : MonoBehaviour
     public static bool showInv;
     public Item selectedItem;
     public static int money;
-
+    
+  
     // Movement.canMove
 
     public Vector2 scr;//
@@ -21,8 +22,9 @@ public class Inventory : MonoBehaviour
     public string sortingType = "All";
 
     public Transform dropLocation;
-    public Transform[] equippedLocation;
 
+    public HealthBar health;
+    public Transform[] equippedLocations;
     /*
     
     0 = right hand
@@ -85,7 +87,7 @@ public class Inventory : MonoBehaviour
 
     }
 
-    private void Update()
+    void Update()
     {
 
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -93,106 +95,214 @@ public class Inventory : MonoBehaviour
             //if(!PauseMenu.isPaused)
             ToggleInv();
         }
+
+
     }
 
     #region Types
     void DisplayInv(string sortType)
     {
+        //if we pick a type
         if (!(sortType == "All" || sortType == ""))
         {
-            // then covert the sortType to our ItemType
+            //then convert the sortType to our ItemType
+
             ItemType type = (ItemType)System.Enum.Parse(typeof(ItemType), sortType);
-            int a = 0; // amount of that type
-            int s = 0; // slot position of GUI item
+            int a = 0;//amount of that type
+            int s = 0;//slot position of item
             for (int i = 0; i < inv.Count; i++)
             {
-                if (inv[i].Type == type) // if inventory item = type declared
+                if (inv[i].Type == type)//find our types
                 {
-                    a++; // increase the amount of this type
-
+                    a++;//increase the amount of this type
                 }
             }
-
-            if (a <= 34) // if the amount of this type is less than or equal to the amount we can display on the screen without scrolling
-            {
-                for (int i = 0; i < inv.Count; i++) // filter through all items
-                {
-                    if (inv[i].Type == type) //if its the type we want to display
-                    {
-                        //we display a button that is of this type and slot htem under the last one 
-
-                        if (GUI.Button(new Rect(0.5f * scr.x, 0.25f * scr.y + s * (0.25f * scr.y), 3f * scr.x, 0.25f * scr.y), inv[i].Name))
-                        {
-                            selectedItem = inv[i];
-                            Debug.Log(selectedItem.Name);
-                        }
-                        s++;
-                        //increase the slot position , so the next one slides under 
-
-                    }
-                }
-            }
-            else //if more than amount of viewable items
-            {
-                scrollPos = GUI.BeginScrollView(new Rect(0.5f * scr.x, 0.25f * scr.y, 3.5f * scr.x, 8.5f * scr.y), scrollPos, new Rect(0, 0, 0, 8.5f * scr.y + ((a - 34) * (0.25f * scr.y))), false, true);
-
-                #region Items in Viewing Area
-                {
-                    for (int i = 0; i < inv.Count; i++)
-                    {
-                        if (inv[i].Type == type)
-                        {
-                            if (inv[i].Type == type) //if its the type we want to display
-                            {
-                                //we display a button that is of this type and slot htem under the last one 
-
-                                if (GUI.Button(new Rect(0 * scr.x, 0 * scr.y + s * (0.25f * scr.y), 3f * scr.x, 0.25f * scr.y), inv[i].Name))
-                                {
-                                    selectedItem = inv[i];
-                                    Debug.Log(selectedItem.Name);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        else
-
-        {
-            scrollPos = GUI.BeginScrollView(new Rect(0.5f * scr.x, 0.25f * scr.y, 3.5f * scr.x, 8.5f * scr.y), scrollPos, new Rect(0, 0, 0, 8.5f * scr.y + ((inv.Count - 34) * (0.25f * scr.y))), false, true);
-
-            #region Items in Viewing Area
+            if (a <= 34)//if the amount of this type is less or equal to the amount we can display on screen without scrolling 
             {
                 for (int i = 0; i < inv.Count; i++)
                 {
+                    if (inv[i].Type == type)//if its the type we want to display
+                    {
+                        //we display a button that is of this type and slot them under the last one
 
-
-                    if (GUI.Button(new Rect(0 * scr.x, 0 * scr.y + i* (0.25f * scr.y), 3f * scr.x, 0.25f * scr.y), inv[i].Name))
+                        if (GUI.Button(new Rect(0.5f * scr.x, 0.25f * scr.y + s * (0.25f * scr.y), 3f * scr.x, 0.25f * scr.y), inv[i].Name))
+                        {
+                            selectedItem = inv[i];//select the time from its position in the inventory
+                            Debug.Log(selectedItem.Name);
+                        }
+                        s++;//increase the slot pos so the next one slides under
+                    }
+                }
+            }
+            else//if more than amount of viewable items
+            {
+                scrollPos = GUI.BeginScrollView(new Rect(0.5f * scr.x, 0.25f * scr.y, 3.5f * scr.x, 8.5f * scr.y), scrollPos, new Rect(0, 0, 0, 8.5f * scr.y + ((a - 34) * (0.25f * scr.y))), false, true);
+                #region Items in Viewing Area
+                for (int i = 0; i < inv.Count; i++)
+                {
+                    if (inv[i].Type == type)
+                    {
+                        if (GUI.Button(new Rect(0, s * (0.25f * scr.y), 3f * scr.x, 0.25f * scr.y), inv[i].Name))
+                        {
+                            selectedItem = inv[i];//select the time from its position in the inventory
+                            Debug.Log(selectedItem.Name);
+                        }
+                        s++;//increase the slot pos so the next one slides under
+                    }
+                }
+                #endregion
+                GUI.EndScrollView();
+            }
+        }
+        //if we are viewing All
+        else
+        {
+            if (inv.Count <= 34)
+            {
+                for (int i = 0; i < inv.Count; i++)
+                {
+                    if (GUI.Button(new Rect(0.5f * scr.x, 0.25f * scr.y + i * (0.25f * scr.y), 3 * scr.x, 0.25f * scr.y), inv[i].Name))
                     {
                         selectedItem = inv[i];
                         Debug.Log(selectedItem.Name);
                     }
-
-
                 }
             }
+            else
+            {
+                scrollPos = GUI.BeginScrollView(new Rect(0.5f * scr.x, 0.25f * scr.y, 3.5f * scr.x, 8.5f * scr.y), scrollPos, new Rect(0, 0, 0, 8.5f * scr.y + ((inv.Count - 34) * (0.25f * scr.y))), false, true);
+                #region Items in Viewing Area
+                for (int i = 0; i < inv.Count; i++)
+                {
+                    if (GUI.Button(new Rect(0 * scr.x, 0 * scr.y + i * (0.25f * scr.y), 3f * scr.x, 0.25f * scr.y), inv[i].Name))
+                    {
+                        selectedItem = inv[i];//select the time from its position in the inventory
+                        Debug.Log(selectedItem.Name);
+                    }
+                }
+                #endregion
+                GUI.EndScrollView();
+            }
         }
+    }
 
-        #endregion
+    void DisplayItem()
+    {
+        switch (selectedItem.Type)
+        {
 
-        GUI.EndScrollView();
+        case ItemType.Consumable:
+            GUI.Box(new Rect(8*scr.x, 5* scr.y, 8* scr.x, 3* scr.y),selectedItem.Name+"\n" + selectedItem.Description + "\nValue:" + selectedItem.Value + "\n"+ "\nHeal" + selectedItem.Heal + "\nAmount:" + selectedItem.Amount );
+                    if (health.curHealth < health.maxHealth)
+                    {
+                        if (GUI.Button(new Rect(15 * scr.x, 8.75f * scr.y, scr.x, 0.25f * scr.y), "Eat"))
+                        {
+                            health.curHealth += selectedItem.Heal;
+                            DepleteAmount();
+                        }
+
+                    }
+                    if (GUI.Button(new Rect(14 * scr.x, 8.75f* scr.y, scr.x, 0.25f* scr.y), "Discard"))
+                    {
+                        Discard();
+                    }
+
+            break;
+
+        case ItemType.Apparel:
+                GUI.Box(new Rect(8 * scr.x, 5 * scr.y, 8 * scr.x, 3 * scr.y), selectedItem.Name + "\n" + selectedItem.Description + "\nValue:" + selectedItem.Value + "\n" + "\nArmour" + selectedItem.Armour + "\nAmount:" + selectedItem.Amount);
+                if (curHelm == null || selectedItem.Mesh.name != curHelm.name)
+                {
+                    if (GUI.Button(new Rect(15 * scr.x, 8.75f * scr.y, scr.x, 0.25f * scr.y), "Equip"))
+                    {
+                        if (curHelm != null)
+                        {
+                            Destroy(curHelm);
+                        }
+                        curHelm = Instantiate(selectedItem.Mesh, equippedLocations[1]);
+                        if (curHelm.GetComponent<ItemHandler>() != null)
+                        {
+                            curHelm.GetComponent<ItemHandler>().enabled = false;
+                        }
+                        curHelm.name = selectedItem.Mesh.name;
+                    }
+
+                }
+
+                if (GUI.Button(new Rect(14 * scr.x, 8.75f * scr.y, scr.x, 0.25f * scr.y), "Discard"))
+                {
+
+                    if (curHelm != null && selectedItem.Mesh.name == curHelm.name)
+                    {
+                        Destroy(curHelm);
+                    }
+                    Discard();
+                }
+                    break;
 
 
 
+        case ItemType.Weapon:
+                GUI.Box(new Rect(8 * scr.x, 5 * scr.y, 8 * scr.x, 3 * scr.y), selectedItem.Name + "\n" + selectedItem.Description + "\nValue:" + selectedItem.Value + "\n" + "\nDamage" + selectedItem.Damage + "\nAmount:" + selectedItem.Amount);
+                if(curWeapon == null || selectedItem.Mesh.name != curWeapon.name)
+                {
+                    if (GUI.Button(new Rect(15 * scr.x, 8.75f * scr.y, scr.x, 0.25f * scr.y), "Equip"))
+                    {
+                        if (curWeapon != null)
+                        {
+                            Destroy(curWeapon);
+                        }
+                        curWeapon = Instantiate(selectedItem.Mesh, equippedLocations[0]);
+                        if (curWeapon.GetComponent<ItemHandler>() != null)
+                        {
+                            curWeapon.GetComponent<ItemHandler>().enabled = false;
+                        }
+                        curWeapon.name = selectedItem.Mesh.name;
+                    }
+                    
+                }
+                
+                if (GUI.Button(new Rect(14 * scr.x, 8.75f * scr.y, scr.x, 0.25f * scr.y), "Discard"))
+                {
 
-#endregion
-        
+                    if(curWeapon != null && selectedItem.Mesh.name == curWeapon.name)
+                    {
+                        Destroy(curWeapon);
+                    }
+                    Discard();
+                }
+                break;
 
+        case ItemType.Quest:
+            break;
 
+        default:
+            break;
+         }
 
     }
-    private void OnGUI()
+
+        void DepleteAmount()
+        {
+            if (selectedItem.Amount > 1)
+            {
+                selectedItem.Amount--;
+            }
+            else
+            {
+
+                inv.Remove(selectedItem);
+                selectedItem = null;
+            }
+            return;
+        }
+    void Discard()
+    {
+          GameObject clone =  Instantiate(selectedItem.Mesh, dropLocation.position, Quaternion.identity);
+        clone.AddComponent<Rigidbody>().useGravity = true;
+        DepleteAmount();
+    }
+    void OnGUI()
     {
         // if(!PauseMenu.paused)
         if (showInv)
@@ -210,8 +320,9 @@ public class Inventory : MonoBehaviour
             if(selectedItem != null)
             {
                 GUI.DrawTexture(new Rect(11*scr.x, 1.5f*scr.y, 2*scr.x, 2*scr.y), selectedItem.Icon);
-
+                DisplayItem();
             }
+          
         }
 
     }

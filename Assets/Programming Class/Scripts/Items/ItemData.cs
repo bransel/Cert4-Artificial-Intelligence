@@ -155,9 +155,19 @@ string icon = "";
                 armour = 0;
                 amount = 1;
                 break;
+            case 403:
+                name = "Apple";
+                value = 1;
+                description = "cronch";
+                icon = "Apple_Icon";
+                mesh = "Apple_Mesh";
+                type = ItemType.Consumable;
+                heal = 5;
+                amount = 1;
+                break;
             #endregion
             default:
-                itemID = 4;
+                itemID = 403;
                 name = "Apple";
                 value = 1;
                 description = "cronch";
