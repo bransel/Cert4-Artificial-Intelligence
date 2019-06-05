@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FPSBullet : MonoBehaviour
 {
-
+    public int damage = 10;
     public float speed = 10f;
     public GameObject effectsPrefab;
     public Transform line;
@@ -33,6 +33,11 @@ public class FPSBullet : MonoBehaviour
         ContactPoint contact = col.contacts[0];
         // Spawn the effect
         //Instantiate(effectsPrefab, contact.point, Quaternion.LookRotation(contact.normal));
+        FPSEnemy enemy = col.collider.GetComponent<FPSEnemy>();
+        if (enemy)
+        {
+            enemy.TakeDamage(damage);
+        }
         // Destroy the bullet
         Destroy(gameObject);
     }
