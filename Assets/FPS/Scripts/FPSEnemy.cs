@@ -26,13 +26,16 @@ public class FPSEnemy : MonoBehaviour
 
         // get the renderer component from this GameObject
         rend = GetComponent<Renderer>();
+        Seek seek = GetComponent<Seek>();
     }
 
     // Update is called once per frame
     void LateUpdate()
-    {
+
+    { 
         // Is the renderer (meshrenderer in this case) is within the camera's view
-        if (rend.isVisible)
+        if (rend.isVisible )
+
         {
             healthSlider.gameObject.SetActive(true);
             //update position of health bar
