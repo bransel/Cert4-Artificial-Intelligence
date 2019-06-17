@@ -52,6 +52,7 @@ public class PlayerMove : MonoBehaviour
                         spoton.transform.position = hit.point;
 
                         agent.SetDestination(click);
+
                         if (Vector3.Distance(transform.position,spoton.transform.position)<= 1)
                         {
                             radar.SetActive(false);
